@@ -1,0 +1,6 @@
+///Grammar rules to parse fields of CSV file
+
+quoted_string = { "\"" ~ (!"\"" ~ ANY)* ~ "\"" }
+value         = { quoted_string | (!"," ~ (!"\n" ~ ANY))* }
+row           = { value ~ ("," ~ value)* }
+file          = { SOI ~ (row ~ ("\r\n" | "\n"))* ~ EOI }
