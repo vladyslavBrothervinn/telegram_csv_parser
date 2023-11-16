@@ -2,6 +2,8 @@
 
 This Rust program parses a CSV file containing data collected from Telegram. The primary goal is to extract messages sent by users.
 
+[![crates.io](https://img.shields.io/crates/v/csv.svg)](https://crates.io/crates/telegram_csv_parser)
+
 ## Technical Description
 
 The parser uses the `telegram_csv_parser` crate, which is based on the Pest parser generator. It follows a set of grammar rules defined in the `csv.pest` file. The CSV file is expected to have a specific structure where messages are identified based on the presence of "PeerUser(user_id=" in the row.
