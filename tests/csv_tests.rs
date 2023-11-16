@@ -85,15 +85,6 @@ pub fn rule_file_test() -> anyhow::Result<()> {
 
     assert!(successful_parse.is_ok());
 
-    //dbg!(successful_parse);
-
-    // assert_eq!(
-    //     successful_parse.as_str(),
-    //     "4,145678,2021-09-16 05:20:01+00:00,,1053373318,,\"Доброго ранку, без питань\",text,,{}"
-    // );
-
-    // dbg!(successful_parse);
-
     let successful_parse = CSVParser::parse(Rule::file, "");
 
     assert!(successful_parse.is_ok());

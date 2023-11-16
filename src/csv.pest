@@ -1,6 +1,13 @@
 ///Grammar rules to parse fields of CSV file
 
+/// Matches any sequence of characters that is not a double quote, capturing everything between the double quotes 
 quoted_string = { "\"" ~ (!"\"" ~ ANY)* ~ "\"" }
+
+/// This rule defines a value, which can be either a quoted string or any sequence of characters that is not a comma
 value         = { quoted_string | (!"," ~ (!"\n" ~ ANY))* }
+
+/// This rule defines a row, which consists of one or more values separated by commas
 row           = { value ~ ("," ~ value)* }
+
+/// Matches zero or more occurrences of a row followed by either a Windows-style line ending (\r\n) or a Unix-style line ending (\n)
 file          = { SOI ~ (row ~ ("\r\n" | "\n"))* ~ EOI }
