@@ -62,6 +62,8 @@ In case if you need a documentation, follow the command:
 
 `cargo doc --open`
 
+or use the following [link](https://docs.rs/telegram_csv_parser/0.1.1/telegram_csv_parser/).
+
 ## Example
 
 ![alt text](examples/example_1.jpg)
@@ -77,4 +79,5 @@ Or
 Result:
 
 ![alt text](examples/example_4.jpg)
+
 
