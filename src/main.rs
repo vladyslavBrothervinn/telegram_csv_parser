@@ -1,10 +1,9 @@
 use anyhow::anyhow;
+use clap::*;
 use std::fs;
 use telegram_csv_parser::*;
-use clap::*;
 
 fn main() -> anyhow::Result<()> {
-
     let matches = App::new("Csv-Telegram-Parser")
         .version("0.1")
         .author("Vladyslav Bezborodov")
@@ -19,15 +18,16 @@ fn main() -> anyhow::Result<()> {
         )
         .get_matches();
 
-    let path_to_file = matches.value_of("file").ok_or_else(|| anyhow!("No input file specified"))?;
+    let path_to_file = matches
+        .value_of("file")
+        .ok_or_else(|| anyhow!("No input file specified"))?;
 
     parse_csv(&path_to_file)?;
 
     Ok(())
 }
 
-fn parse_csv(path : &str) -> anyhow::Result<()> {
-
+fn parse_csv(path: &str) -> anyhow::Result<()> {
     let unparsed_file = fs::read_to_string(path)?;
 
     let file = CSVParser::parse(Rule::file, &unparsed_file)?
@@ -81,5 +81,5 @@ fn parse_csv(path : &str) -> anyhow::Result<()> {
     println!("Number of messages: {}", message_count);
     println!("Number of words from all messages: {}", word_count);
 
-    Ok (())
+    Ok(())
 }
