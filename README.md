@@ -78,4 +78,3 @@ Result:
 
 ![alt text](examples/example_4.jpg)
 
-

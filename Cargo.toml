@@ -6,7 +6,8 @@ license = "MIT"
 description ="Telegram-csv-parser"
 include = [
     "src/**/*",
-    "Cargo.toml"
+    "Cargo.toml",
+    "examples/**/*"
     ]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
