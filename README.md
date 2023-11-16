@@ -56,7 +56,7 @@ Or
 
 When need help, use
 
-`cargo run -- - help`
+`cargo run -- -help`
 
 ## Documentation
 
