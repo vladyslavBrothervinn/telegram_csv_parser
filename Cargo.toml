@@ -7,7 +7,6 @@ description = "Telegram-csv-parser"
 include = [
     "src/**/*",
     "Cargo.toml",
-    "examples/example_1"
     ]
 
 documentation = "https://docs.rs/telegram_csv_parser/0.1.1/telegram_csv_parser/"
