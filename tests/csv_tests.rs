@@ -95,3 +95,62 @@ pub fn rule_file_test() -> anyhow::Result<()> {
 
     Ok(())
 }
+
+#[test]
+pub fn rule_value_test2() -> Result<(), CsvError> {
+    let successful_parse = CSVParser::parse(Rule::value, "2022-01-03 10:57:14+00:00")
+        .map_err(|err| CsvError::ParseError(format!("Failed to parse value: {}", err)))?
+        .next()
+        .ok_or_else(|| CsvError::ValueError)?;
+
+        
+
+    assert_eq!(successful_parse.as_str(), "2022-01-03 10:57:14+00:00");
+    assert_eq!(successful_parse.as_span().start(), 0);
+    assert_eq!(successful_parse.as_span().end(), 25);
+
+    dbg!(successful_parse);
+
+    let successful_parse = CSVParser::parse(Rule::value, ",")
+        .map_err(|err| CsvError::ParseError(format!("Failed to parse value: {}", err)))?
+        .next()
+        .ok_or_else(|| CsvError::ValueError)?;
+
+    assert_eq!(successful_parse.as_str(), "");
+
+    dbg!(successful_parse);
+
+    let successful_parse = CSVParser::parse(Rule::value, "12,1222")
+        .map_err(|err| CsvError::ParseError(format!("Failed to parse value: {}", err)))?
+        .next()
+        .ok_or_else(|| CsvError::ValueError)?;
+
+    assert_eq!(successful_parse.as_str(), "12");
+
+    Ok(())
+}
+
+#[test]
+pub fn rule_row_test2() -> Result<(), CsvError> {
+
+    let successful_parse = CSVParser::parse(Rule::row, "-273.15,-31")
+    .map_err(|err| CsvError::ParseError(format!("Failed to parse value: {}", err)))?
+    .next()
+    .ok_or_else(|| CsvError::ValueError)?;
+
+    assert_eq!(successful_parse.as_str(), "-273.15,-31");
+    assert_eq!(successful_parse.as_span().start(), 0);
+    assert_eq!(successful_parse.as_span().end(), 11);
+
+    dbg!(successful_parse);
+
+    let successful_parse = CSVParser::parse(Rule::row, "");
+
+    assert!(successful_parse.is_ok());
+
+    let successful_parse = CSVParser::parse(Rule::row, "smth,,smth");
+
+    assert!(successful_parse.is_ok());
+
+    Ok(())
+}
