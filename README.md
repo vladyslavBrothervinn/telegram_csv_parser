@@ -66,18 +66,18 @@ or use the following [link](https://docs.rs/telegram_csv_parser/0.1.1/telegram_c
 
 ## Example
 
-![alt text](examples/example_1.jpg)
+![my_img](/examples/example_1.jpg)
 
 Running the following command:
 
-![alt text](examples/example_2.jpg)
+![my_img](/examples/example_2.jpg)
 
 Or
 
-![alt text](examples/example_3.jpg)
+![my_img](/examples/example_3.jpg)
 
 Result:
 
-![alt text](examples/example_4.jpg)
+![my_img](/examples/example_4.jpg)
 
 
