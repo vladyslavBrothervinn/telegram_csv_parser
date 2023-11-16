@@ -1,1 +1,0 @@
-window.ALL_CRATES = ["anyhow","atty","bitflags","clap","memchr","once_cell","pest","pest_derive","pest_generator","pest_meta","proc_macro2","quote","strsim","syn","telegram_csv_parser","textwrap","thiserror","thiserror_impl","ucd_trie","unicode_ident","unicode_width","vec_map","winapi"];
