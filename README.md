@@ -54,6 +54,16 @@ Or
 
 `cargo run -- --file name_of_the_file_to_parse.csv`
 
+By default it will create an output file where the results are stored.
+
+However, you can specify the path to the output file where you want to save the results
+
+`cargo run -- -f examples\example_collected_data_from_telegram.csv -o my_file_to_save.txt`
+
+Or
+
+`cargo run -- -f examples\example_collected_data_from_telegram.csv --output my_file_to_save.txt`
+
 When need help, use
 
 `cargo run -- -help`
@@ -78,8 +88,14 @@ Or
 
 ![my_img](/examples/example_3.png)
 
+Or
+
+![my_img](/examples/example_5.png)
+
 Result:
 
 ![my_img](/examples/example_4.png)
+
+![my_img](/examples/example_6.png)
 
 

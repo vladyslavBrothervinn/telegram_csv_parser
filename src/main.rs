@@ -1,6 +1,6 @@
 use anyhow::anyhow;
 use clap::*;
-use std::fs;
+use std::{fs, ops::Add};
 use telegram_csv_parser::*;
 
 fn main() -> anyhow::Result<()> {
@@ -15,6 +15,13 @@ fn main() -> anyhow::Result<()> {
                 .value_name("FILE")
                 .help("Sets the input file you want to parse")
                 .takes_value(true),
+        ).arg(
+            Arg::with_name("output")
+                .short("o")
+                .long("output")
+                .value_name("FILE")
+                .help("Sets the output file")
+                .takes_value(true),
         )
         .get_matches();
 
@@ -22,12 +29,14 @@ fn main() -> anyhow::Result<()> {
         .value_of("file")
         .ok_or_else(|| anyhow!("No input file specified"))?;
 
-    parse_csv(&path_to_file)?;
+    let output_file = matches.value_of("output").unwrap_or("default_output.txt");
+
+    parse_csv(&path_to_file, &output_file)?;
 
     Ok(())
 }
 
-fn parse_csv(path: &str) -> anyhow::Result<()> {
+fn parse_csv(path: &str, output_file: &str) -> anyhow::Result<()> {
     let unparsed_file = fs::read_to_string(path)?;
 
     let file = CSVParser::parse(Rule::file, &unparsed_file)?
@@ -81,5 +90,12 @@ fn parse_csv(path: &str) -> anyhow::Result<()> {
     println!("Number of messages: {}", message_count);
     println!("Number of words from all messages: {}", word_count);
 
+    write_to_file(output_file, (String::from("User's message count: ").add(&message_count.to_string()).add("\n")
+                                                    .add("User's word count: ").add(&word_count.to_string())).as_str()).unwrap();
+
     Ok(())
+}
+
+fn write_to_file(file_path: &str, content: &str) -> std::io::Result<()> {
+    fs::write(file_path, content)
 }
